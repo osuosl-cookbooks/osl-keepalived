@@ -8,6 +8,7 @@ description      'Installs/Configures osl-keepalived'
 long_description 'Installs/Configures osl-keepalived'
 version          '0.1.0'
 
-depends          'keepalived'
+depends          'firewall'
+depends          'keepalived', '~> 3.1.1'
 
 supports         'centos', '~> 7.0'

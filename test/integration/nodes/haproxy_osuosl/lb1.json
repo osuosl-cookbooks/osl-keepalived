@@ -1,0 +1,7 @@
+{
+  "name": "lb1.osuosl.org",
+  "automatic": {
+    "hostname": "lb1",
+    "fqdn": "lb1.osuosl.org"
+  }
+}

@@ -4,50 +4,44 @@ This is OSL's wrapper cookbook for utilizing the [keepalived cookbook](https://s
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any
-requirements this cookbook has on platforms, libraries, other cookbooks,
-packages, operating systems, etc.
+
+#### Platforms
+- CentOS 7
 
 #### Cookbooks
-- `keepalived` - the upstream cookbook that this wraps
+- `keepalived` - the upstream cookbook that this is wrapping
+- `firewall` - our internal firewall cookbook has a recipe for VRRP rules
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
 
-e.g.
-#### osl-keepalived::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['osl-keepalived']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+Key                                    | Description
+-------------------------------------- | -------------------------------
+`['osl-keepalived']['default_master']` | FQDN of the default master node
 
 Usage
 -----
-#### osl-keepalived::default
-TODO: Write usage instructions for each cookbook.
+A single recipe exists for each group of hosts sharing a virtual IP (i.e.
+`osl-keepalived::haproxy-osuosl` is for `lb1.osuosl.org` and `lb2.osuosl.org`
+sharing the IP for `vip-lb1.osuosl.org`). This recipe should be converged on
+each of these hosts.
 
-e.g.
-Just include `osl-keepalived` in your node's `run_list`:
+Testing
+-------
+In addition to Kitchen and ChefSpec, chef-provisioning can be used to test
+failover between two VMs (as this is difficult to do with Kitchen). First, set
+up the VMs with `rake keepalived`. Then `cd vms/` and connect to the nodes with
+`vagrant ssh node1` and `vagrant ssh node2`. Each node is running an HTTP
+server that serves its hostname, so you can curl the virtual IPs to determine
+which is the current master:
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[osl-keepalived]"
-  ]
-}
-```
+* `curl 192.168.60.10`
+* `curl -g -6 http://[fc00::10]`
+
+To test failover, you can do `systemctl stop keepalived` on the master node, and
+then curl again.
+
+When you're finished with these VMs, be sure to run `rake clean`.
 
 Contributing
 ------------

@@ -1,0 +1,10 @@
+{
+  "id": "haproxy_phpbb",
+  "auth_pass": {
+    "encrypted_data": "dJ2QIej0l3wT6jIM699IHXJ+DVvnKwvbcUP9v/RvVlo=\n",
+    "hmac": "CKa19PJZq/1nq8cUREBwmVSzn5t225KIVj6WnkeJc8Y=\n",
+    "iv": "jg9N1rs3gYmm1boBYjAwgA==\n",
+    "version": 2,
+    "cipher": "aes-256-cbc"
+  }
+}

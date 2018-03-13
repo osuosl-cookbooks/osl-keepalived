@@ -1,5 +1,19 @@
 ---
+provisioner:
+  name: chef_solo
+  encrypted_data_bag_secret_key_path: test/integration/encrypted_data_bag_secret
+  data_bags_path: test/integration/data_bags
+
 suites:
   - name: default
     run_list:
       - recipe[osl-keepalived::default]
+  - name: haproxy_osuosl
+    run_list:
+      - recipe[osl-keepalived::haproxy_osuosl]
+  - name: haproxy_phpbb
+    run_list:
+      - recipe[osl-keepalived::haproxy_phpbb]
+  - name: mysql2
+    run_list:
+      - recipe[osl-keepalived::mysql2]
