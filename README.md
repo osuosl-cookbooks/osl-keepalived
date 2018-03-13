@@ -13,7 +13,12 @@ packages, operating systems, etc.
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
+### osl-keepalived::haproxy-osuosl
+
+Key                                              | Type    | Description                                            | Default
+------------------------------------------------ | ------- | ------------------------------------------------------ | -------
+`['osl-keepalived']['haproxy-osuosl']['master']` | Boolean | whether the node should default to be master or backup | `false`
+
 
 e.g.
 #### osl-keepalived::default

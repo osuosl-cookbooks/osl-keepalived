@@ -1,6 +1,6 @@
 #
 # Cookbook:: osl-keepalived
-# Recipe:: default
+# Recipe:: haproxy-osuosl
 #
 # Copyright:: 2018, Oregon State University
 #
@@ -16,4 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'keepalived::default'
+include_recipe 'osl-keepalived::default'
+
+haproxy_osuosl = node['osl-keepalived']['haproxy-osuosl']
+
+keepalived_vrrp_instance 'vip-lb1' do
+  master haproxy_osuosl['master']
+  interface node['network']['default_interface']
+  virtual_router_id 1
+  # priority TODO
+end
