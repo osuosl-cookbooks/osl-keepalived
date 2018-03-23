@@ -9,6 +9,9 @@ describe 'osl-keepalived::default' do
       it 'converges successfully' do
         expect { chef_run }.to_not raise_error
       end
+      it do
+        expect(chef_run).to include_recipe 'keepalived::default'
+      end
     end
   end
 end

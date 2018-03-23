@@ -3,3 +3,11 @@ suites:
   - name: default
     run_list:
       - recipe[osl-keepalived::default]
+  - name: haproxy-osuosl
+    run_list:
+      - recipe[osl-keepalived::haproxy-osuosl]
+    attributes:
+      osl-keepalived:
+        haproxy-osuosl:
+          master: true
+          auth_pass: 'foobar'

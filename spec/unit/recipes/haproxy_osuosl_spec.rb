@@ -1,6 +1,6 @@
 require_relative '../../spec_helper'
 
-describe 'osl-keepalived::haproxy-osuosl' do
+describe 'osl-keepalived::haproxy_osuosl' do
   ALL_PLATFORMS.each do |p|
     context "#{p[:platform]} #{p[:version]}" do
       cached(:chef_run) do

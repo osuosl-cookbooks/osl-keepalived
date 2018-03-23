@@ -15,9 +15,12 @@ Attributes
 ----------
 ### osl-keepalived::haproxy-osuosl
 
-Key                                              | Type    | Description                                            | Default
------------------------------------------------- | ------- | ------------------------------------------------------ | -------
-`['osl-keepalived']['haproxy-osuosl']['master']` | Boolean | whether the node should default to be master or backup | `false`
+Key                                                         | Type              | Description                                            | Default
+----------------------------------------------------------- | -------           | ------------------------------------------------------ | -------
+`['osl-keepalived']['haproxy-osuosl']['master']`            | Boolean           | whether the node should default to be master or backup | `false`
+`['osl-keepalived']['haproxy-osuosl']['priority']`          | Integer           | priority value for inheriting master (greater wins)    | 100
+`['osl-keepalived']['haproxy-osuosl']['auth_pass']`         | String            | password for VRRP authentication                       | nil
+`['osl-keepalived']['haproxy-osuosl']['virtual_ipaddress']` | List of Strings   | list of IPs that will fail over                        | 140.211.9.53
 
 
 e.g.

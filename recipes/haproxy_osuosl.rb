@@ -24,5 +24,8 @@ keepalived_vrrp_instance 'vip-lb1' do
   master haproxy_osuosl['master']
   interface node['network']['default_interface']
   virtual_router_id 1
-  # priority TODO
+  priority haproxy_osuosl['priority']
+  # advert_int 1
+  authentication auth_type: 'PASS', auth_pass: haproxy_osuosl['auth_pass']
+  virtual_ipaddress haproxy_osuosl['virtual_ipaddress']
 end
