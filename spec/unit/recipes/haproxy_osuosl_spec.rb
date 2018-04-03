@@ -9,6 +9,16 @@ describe 'osl-keepalived::haproxy_osuosl' do
       it 'converges successfully' do
         expect { chef_run }.to_not raise_error
       end
+      it do
+        expect(chef_run).to create_keepalived_vrrp_instance('vip-lb1').with(
+          master: false,
+          interface: 'eth0',
+          virtual_router_id: 1,
+          priority: 100,
+          authentication: { auth_type: 'PASS', auth_pass: nil },
+          virtual_ipaddress: %w(140.211.9.53)
+        )
+      end
     end
   end
 end

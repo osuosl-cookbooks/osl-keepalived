@@ -3,9 +3,9 @@ suites:
   - name: default
     run_list:
       - recipe[osl-keepalived::default]
-  - name: haproxy-osuosl
+  - name: haproxy_osuosl
     run_list:
-      - recipe[osl-keepalived::haproxy-osuosl]
+      - recipe[osl-keepalived::haproxy_osuosl]
     attributes:
       osl-keepalived:
         haproxy-osuosl:
