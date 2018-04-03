@@ -9,5 +9,11 @@ suites:
     attributes:
       osl-keepalived:
         haproxy-osuosl:
-          master: true
+          auth_pass: 'foobar'
+  - name: haproxy_phpbb
+    run_list:
+      - recipe[osl-keepalived::haproxy_phpbb]
+    attributes:
+      osl-keepalived:
+        haproxy-phpbb:
           auth_pass: 'foobar'
