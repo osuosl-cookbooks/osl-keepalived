@@ -19,26 +19,17 @@ Key                                                         | Type              
 ----------------------------------------------------------- | -------           | ------------------------------------------------------ | -------
 `['osl-keepalived']['haproxy-osuosl']['master']`            | Boolean           | whether the node should default to be master or backup | `false`
 `['osl-keepalived']['haproxy-osuosl']['priority']`          | Integer           | priority value for inheriting master (greater wins)    | 100
-`['osl-keepalived']['haproxy-osuosl']['auth_pass']`         | String            | password for VRRP authentication                       | nil
+`['osl-keepalived']['haproxy-osuosl']['auth_pass']`         | String            | password for VRRP authentication                       | `nil`
 `['osl-keepalived']['haproxy-osuosl']['virtual_ipaddress']` | List of Strings   | list of IPs that will fail over                        | 140.211.9.53
 
+### osl-keepalived::haproxy-phpbb
 
-e.g.
-#### osl-keepalived::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['osl-keepalived']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+Key                                                        | Type              | Description                                            | Default
+---------------------------------------------------------- | -------           | ------------------------------------------------------ | -------
+`['osl-keepalived']['haproxy-phpbb']['master']`            | Boolean           | whether the node should default to be master or backup | `false`
+`['osl-keepalived']['haproxy-phpbb']['priority']`          | Integer           | priority value for inheriting master (greater wins)    | 100
+`['osl-keepalived']['haproxy-phpbb']['auth_pass']`         | String            | password for VRRP authentication                       | `nil`
+`['osl-keepalived']['haproxy-phpbb']['virtual_ipaddress']` | List of Strings   | list of IPs that will fail over                        | 140.211.15.244
 
 Usage
 -----
