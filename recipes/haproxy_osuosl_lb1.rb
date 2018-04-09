@@ -20,11 +20,11 @@ include_recipe 'osl-keepalived::default'
 
 haproxy_osuosl = node['osl-keepalived']['haproxy-osuosl']
 
-keepalived_vrrp_instance 'vip-lb1' do
-  master haproxy_osuosl['master']
+keepalived_vrrp_instance 'haproxy-osuosl-lb1' do
+  master true
   interface node['network']['default_interface']
   virtual_router_id 1
-  priority haproxy_osuosl['priority']
+  priority 200
   authentication auth_type: 'PASS', auth_pass: haproxy_osuosl['auth_pass']
   virtual_ipaddress haproxy_osuosl['virtual_ipaddress']
 end

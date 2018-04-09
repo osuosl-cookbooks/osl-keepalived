@@ -19,11 +19,11 @@ include_recipe 'osl-keepalived::default'
 
 haproxy_phpbb = node['osl-keepalived']['haproxy-phpbb']
 
-keepalived_vrrp_instance 'vip-phpbb-lb1' do
-  master haproxy_phpbb['master']
+keepalived_vrrp_instance 'haproxy-phpbb-lb1' do
+  master true
   interface node['network']['default_interface']
   virtual_router_id 2
-  priority haproxy_phpbb['priority']
+  priority 200
   authentication auth_type: 'PASS', auth_pass: haproxy_phpbb['auth_pass']
   virtual_ipaddress haproxy_phpbb['virtual_ipaddress']
 end
