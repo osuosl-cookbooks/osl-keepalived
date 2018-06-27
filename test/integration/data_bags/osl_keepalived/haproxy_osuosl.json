@@ -1,0 +1,10 @@
+{
+  "id": "haproxy_osuosl",
+  "auth_pass": {
+    "encrypted_data": "2+bo2u1YIML2UnC95bxLyh42lae8VMB0GfV0ZjH05Rc=\n",
+    "hmac": "Bqk6ZWCyqEbsvCPmhsohUKCNk4NLwqNEJHeQWhG2TQE=\n",
+    "iv": "g9t0uzSKlAHNM5m1OvWLiQ==\n",
+    "version": 2,
+    "cipher": "aes-256-cbc"
+  }
+}
