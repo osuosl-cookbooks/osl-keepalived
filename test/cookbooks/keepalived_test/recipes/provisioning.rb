@@ -4,6 +4,39 @@ node.override['firewall']['vrrp']['range']['6'] = %w(fc00::/64)
 include_recipe 'firewall::default'
 include_recipe 'firewall::http'
 
+# To test the cutover from ucarp to keepalived:
+# - Add ucarp to Berksfile
+# - uncomment step 1 and comment out step 2
+# - rake keepalived
+# - it will fail, login and tweak /usr/libexec/ucarp/ucarp and fix this bug:
+#   https://bugzilla.redhat.com/show_bug.cgi?id=1568599
+# - rake keepalived (again)
+# - when both nodes successful, comment out step 1 and uncomment step 2
+# - rake keepalived
+# - confirm keepalived is working without issue
+# - rake clean
+
+# 1) Setup Ucarp
+# ==============
+
+# Deals with bug(?) where PASSWORD entry doesn't work, PASSFILE seems required
+# file '/etc/ucarp/vip-001.pwd' do
+#   content 'foobar'
+# end
+#
+# node.default['ucarp']['data_bag']['cluster'] = 'keepalived-test'
+# include_recipe 'ucarp::data_bag'
+
+# 2) Remove Ucarp & Setup Keepalived
+# ==================================
+service 'ucarp' do
+  action [:disable, :stop]
+end
+
+package 'ucarp' do
+  action :remove
+end
+
 node.default['osl-keepalived']['master'] = {
   'node1' => true,
   'node2' => false
@@ -50,8 +83,9 @@ end
 keepalived_vrrp_sync_group 'default_group' do
   group %w(default_ipv4 default_ipv6)
 end
+# --- step 2 ends here ---
 
-# Simple http server for testing that this works
+# Simple http server for testing location of VIP
 package 'httpd'
 
 service 'httpd' do
