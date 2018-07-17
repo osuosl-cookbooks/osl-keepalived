@@ -16,15 +16,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# XXX: Remove after cutover is finished
-service 'ucarp' do
-  action [:disable, :stop]
-end
-
-package 'ucarp' do
-  action :remove
-end
-# -----
-
 include_recipe 'firewall::vrrp'
 include_recipe 'keepalived::default'
