@@ -51,7 +51,7 @@ keepalived_vrrp_sync_group 'default_group' do
   group %w(default_ipv4 default_ipv6)
 end
 
-# Simple http server for testing that this works
+# Simple http server for testing location of VIP
 package 'httpd'
 
 service 'httpd' do

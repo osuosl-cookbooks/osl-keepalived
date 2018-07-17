@@ -1,0 +1,8 @@
+{
+  "id": "keepalived-test",
+  "vip_id": "001",
+  "source_address": "192.168.60.11",
+  "vip_address": "192.168.60.10",
+  "bind_interface": "enp0s8",
+  "password": "foobar"
+}
