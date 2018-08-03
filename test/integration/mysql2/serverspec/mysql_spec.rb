@@ -35,7 +35,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
       %r{vrrp_instance mysql-backend-ipv4 {
 	state BACKUP
 	virtual_router_id 6
-	interface eth0
+	interface eth1
 	priority 100
 	authentication {
 		auth_type PASS
@@ -51,5 +51,8 @@ end
 
 describe interface 'eth0' do
   it { should have_ipv4_address '140.211.9.47/24' }
+end
+
+describe interface 'eth1' do
   it { should have_ipv4_address '10.1.0.86/23' }
 end
