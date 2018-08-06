@@ -16,4 +16,5 @@ suites:
       - recipe[osl-keepalived::haproxy_phpbb]
   - name: mysql2
     run_list:
+      - recipe[keepalived_test::eth1]
       - recipe[osl-keepalived::mysql2]
