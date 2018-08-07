@@ -13,10 +13,10 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.con
   its(:content) do
     should match(
       %r{vrrp_instance mysql-ipv4 {
-	state BACKUP
+	state MASTER
 	virtual_router_id 5
 	interface eth0
-	priority 100
+	priority 200
 	authentication {
 		auth_type PASS
 		auth_pass foobar
@@ -33,10 +33,10 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
   its(:content) do
     should match(
       %r{vrrp_instance mysql-backend-ipv4 {
-	state BACKUP
+	state MASTER
 	virtual_router_id 6
 	interface eth1
-	priority 100
+	priority 200
 	authentication {
 		auth_type PASS
 		auth_pass foobar
