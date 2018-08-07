@@ -10,6 +10,5 @@ version          '0.2.1'
 
 depends          'firewall'
 depends          'keepalived', '~> 3.1.1'
-depends          'keepalived_test'
 
 supports         'centos', '~> 7.0'
