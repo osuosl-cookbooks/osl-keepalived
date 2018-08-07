@@ -43,6 +43,18 @@ then curl again.
 
 When you're finished with these VMs, be sure to run `rake clean`.
 
+### Kitchen Test Failures
+If ServerSpec tests are failing due to VIPs missing on the network interfaces,
+it's possible that other Kitchen VMs for this cookbook on the same network are
+interfering with your VM. To verify this, `kitchen login` and then
+`sudo journalctl -e -u keepalived`. If you see that keepalived is taking the
+`BACKUP` state because it's encountering an equal priority of 200, this is likely
+the case.
+
+To remedy this look for OpenStack VMs named with the same suites that you're
+testing using `nova list`, and remove them with `nova delete`. (Ideally, check
+with the owners before deleting their VMs).
+
 Contributing
 ------------
 
