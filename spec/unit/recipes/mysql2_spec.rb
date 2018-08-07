@@ -42,7 +42,7 @@ describe 'osl-keepalived::mysql2' do
       it do
         expect(chef_run).to create_keepalived_vrrp_instance('mysql-backend-ipv4').with(
           master: true,
-          interface: 'eth0',
+          interface: 'eth1',
           virtual_router_id: 6,
           priority: 200,
           authentication: { auth_type: 'PASS', auth_pass: 'foobar' },
@@ -69,7 +69,7 @@ describe 'osl-keepalived::mysql2' do
       it do
         expect(chef_run).to create_keepalived_vrrp_instance('mysql-backend-ipv4').with(
           master: false,
-          interface: 'eth0',
+          interface: 'eth1',
           virtual_router_id: 6,
           priority: 100,
           authentication: { auth_type: 'PASS', auth_pass: 'foobar' },

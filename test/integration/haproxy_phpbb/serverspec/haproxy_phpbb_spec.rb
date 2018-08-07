@@ -13,10 +13,10 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-phpbb-ip
   its(:content) do
     should match(
       %r{vrrp_instance haproxy-phpbb-ipv4 {
-	state BACKUP
+	state MASTER
 	virtual_router_id 3
 	interface eth0
-	priority 100
+	priority 200
 	authentication {
 		auth_type PASS
 		auth_pass foobar

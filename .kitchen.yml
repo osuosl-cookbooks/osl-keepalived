@@ -10,10 +10,23 @@ suites:
       - recipe[osl-keepalived::default]
   - name: haproxy_osuosl
     run_list:
+      - recipe[keepalived_test::hostname]
       - recipe[osl-keepalived::haproxy_osuosl]
+    attributes:
+      keepalived_test:
+        fqdn: lb1.osuosl.org
   - name: haproxy_phpbb
     run_list:
+      - recipe[keepalived_test::hostname]
       - recipe[osl-keepalived::haproxy_phpbb]
+    attributes:
+      keepalived_test:
+        fqdn: lb1.phpbb.org
   - name: mysql2
     run_list:
+      - recipe[keepalived_test::hostname]
+      - recipe[keepalived_test::eth1]
       - recipe[osl-keepalived::mysql2]
+    attributes:
+      keepalived_test:
+        fqdn: mysql3.osuosl.org

@@ -42,7 +42,7 @@ end
 
 keepalived_vrrp_instance 'mysql-backend-ipv4' do
   master node['osl-keepalived']['master'][node['fqdn']]
-  interface node['network']['default_interface']
+  interface 'eth1'
   virtual_router_id 6
   priority node['osl-keepalived']['priority'][node['fqdn']]
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
