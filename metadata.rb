@@ -8,7 +8,6 @@ description      'Installs/Configures osl-keepalived'
 long_description 'Installs/Configures osl-keepalived'
 version          '0.2.0'
 
-depends          'chef_hostname'
 depends          'firewall'
 depends          'keepalived', '~> 3.1.1'
 depends          'keepalived_test'
