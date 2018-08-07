@@ -1,0 +1,4 @@
+cookbook=osl-keepalived
+version=0.2.0
+envs=~
+pr_link=https://github.com/osuosl-cookbooks/osl-keepalived/pull/2
