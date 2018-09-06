@@ -24,10 +24,10 @@ describe 'osl-keepalived::haproxy_phpbb' do
         it do
           expect(chef_run.keepalived_vrrp_instance("haproxy-phpbb-#{ip}")).to notify('service[keepalived]').to(:reload)
         end
-        it do
-          expect(chef_run.keepalived_vrrp_sync_group('haproxy-phpbb-group')).to \
-            notify('service[keepalived]').to(:reload)
-        end
+      end
+      it do
+        expect(chef_run.keepalived_vrrp_sync_group('haproxy-phpbb-group')).to \
+          notify('service[keepalived]').to(:reload)
       end
     end
 
