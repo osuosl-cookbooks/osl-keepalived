@@ -48,14 +48,12 @@ keepalived_vrrp_instance 'haproxy-phpbb-ipv6' do
   # Authentication isn't actually used with IPv6 (see https://tools.ietf.org/html/rfc5798#section-9)
   # however, keepalived cookbook requires this to be defined
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
-  virtual_ipaddress %w() # TODO: IPv6 for lb.phpbb.com
+  virtual_ipaddress %w(2605:bc80:3010:103::8cd3:ff4/64)
   notifies :reload, 'service[keepalived]'
-  action :nothing # TODO: IPv6 for lb.phpbb.com
 end
 
 # Sync group ensures IPv4 and IPv6 fail over together
 keepalived_vrrp_sync_group 'haproxy-phpbb-group' do
   group %w(haproxy-phpbb-ipv4 haproxy-phpbb-ipv6)
   notifies :reload, 'service[keepalived]'
-  action :nothing # TODO: IPv6 for lb.phpbb.com
 end
