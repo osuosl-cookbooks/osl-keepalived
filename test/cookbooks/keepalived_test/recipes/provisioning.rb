@@ -22,12 +22,12 @@ osl_ifconfig "192.168.60.#{node['keepalived_test']['ip']}" do
   network '192.168.60.0'
   ipv6init 'yes'
   ipv6addr "fc00::#{node['keepalived_test']['ip']}"
-  device 'enp0s8'
+  device 'eth1'
 end
 
 keepalived_vrrp_instance 'default_ipv4' do
   master node['osl-keepalived']['master'][node['fqdn']]
-  interface 'enp0s8'
+  interface 'eth1'
   virtual_router_id 1
   priority node['osl-keepalived']['priority'][node['fqdn']]
   authentication auth_type: 'PASS', auth_pass: 'password'
@@ -37,7 +37,7 @@ end
 
 keepalived_vrrp_instance 'default_ipv6' do
   master node['osl-keepalived']['master'][node['fqdn']]
-  interface 'enp0s8'
+  interface 'eth1'
   virtual_router_id 2
   priority node['osl-keepalived']['priority'][node['fqdn']]
   # Authentication isn't actually used with IPv6 (see https://tools.ietf.org/html/rfc5798#section-9)
