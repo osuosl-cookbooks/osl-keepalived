@@ -18,12 +18,12 @@
 
 node.default['osl-keepalived']['master'] = {
   'mysql3.osuosl.org' => true,
-  'mysql4.osuosl.org' => false
+  'mysql4.osuosl.org' => false,
 }
 
 node.default['osl-keepalived']['priority'] = {
   'mysql3.osuosl.org' => 200,
-  'mysql4.osuosl.org' => 100
+  'mysql4.osuosl.org' => 100,
 }
 
 include_recipe 'osl-keepalived::default'

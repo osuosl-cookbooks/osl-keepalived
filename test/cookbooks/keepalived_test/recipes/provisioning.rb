@@ -6,12 +6,12 @@ include_recipe 'firewall::http'
 
 node.default['osl-keepalived']['master'] = {
   'node1' => true,
-  'node2' => false
+  'node2' => false,
 }
 
 node.default['osl-keepalived']['priority'] = {
   'node1' => 200,
-  'node2' => 100
+  'node2' => 100,
 }
 
 include_recipe 'osl-keepalived::default'

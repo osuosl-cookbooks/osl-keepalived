@@ -18,12 +18,12 @@
 
 node.default['osl-keepalived']['master'] = {
   'lb1.osuosl.org' => true,
-  'lb2.osuosl.org' => false
+  'lb2.osuosl.org' => false,
 }
 
 node.default['osl-keepalived']['priority'] = {
   'lb1.osuosl.org' => 200,
-  'lb2.osuosl.org' => 100
+  'lb2.osuosl.org' => 100,
 }
 
 include_recipe 'osl-keepalived::default'
