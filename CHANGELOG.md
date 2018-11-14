@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+0.2.4 (2018-11-14)
+------------------
+- Chef 13 fixes for osl-keepalived
+
 0.2.3 (2018-09-07)
 ------------------
 - Enable IPv6 in osl-keepalived::haproxy-phpbb

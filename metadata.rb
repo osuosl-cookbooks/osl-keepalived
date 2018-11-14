@@ -7,7 +7,7 @@ issues_url       'https://github.com/osuosl-cookbooks/osl-keepalived/issues'
 source_url       'https://github.com/osuosl-cookbooks/osl-keepalived'
 description      'Installs/Configures osl-keepalived'
 long_description 'Installs/Configures osl-keepalived'
-version          '0.2.3'
+version          '0.2.4'
 
 depends          'firewall'
 depends          'keepalived', '~> 3.1.1'
