@@ -6,10 +6,10 @@ with_driver "vagrant:#{File.dirname(__FILE__)}/../../../vms"
 [%w(node1 11), %w(node2 12)].each do |name, ip_suff|
   machine name do
     machine_options vagrant_options: {
-      'vm.box' => 'bento/centos-7.4'
+      'vm.box' => 'bento/centos-7',
     },
                     convergence_options: {
-                      chef_version: '12.18.31'
+                      chef_version: '13.8.5',
                     }
     add_machine_options vagrant_config: <<-EOF
     config.vm.network "private_network", ip: "192.168.60.#{ip_suff}"
