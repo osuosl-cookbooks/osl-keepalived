@@ -51,6 +51,6 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-phpbb-
   end
 end
 
-describe command('ip address show eth0')do
-  its('stdout') { should match /inet 140\.211\.15\.244\/24[\s\S]*inet6 2605:bc80:3010:103::8cd3:ff4\/64/ }
+describe command('ip address show eth0') do
+  its('stdout') { should match %r{inet 140\.211\.15\.244\/24[\s\S]*inet6 2605:bc80:3010:103::8cd3:ff4\/64} }
 end
