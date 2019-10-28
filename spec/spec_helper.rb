@@ -1,21 +1,19 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-ChefSpec::Coverage.start! { add_filter 'osl-keepalived' }
-
 CENTOS_7 = {
   platform: 'centos',
-  version: '7.4.1708',
+  version: '7',
 }.freeze
 
 CENTOS_6 = {
   platform: 'centos',
-  version: '6.9',
+  version: '6',
 }.freeze
 
 DEBIAN_8 = {
   platform: 'debian',
-  version: '9.3',
+  version: '9',
 }.freeze
 
 ALL_PLATFORMS = [
@@ -25,5 +23,5 @@ ALL_PLATFORMS = [
 ].freeze
 
 RSpec.configure do |config|
-  config.log_level = :fatal
+  config.log_level = :warn
 end
