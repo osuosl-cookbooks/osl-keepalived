@@ -1,0 +1,1 @@
+../../helpers/inspec/keepalived.rb

@@ -1,16 +1,5 @@
-require 'spec_helper'
-
-describe package 'keepalived' do
-  it { should be_installed }
-end
-
-describe service 'keepalived' do
-  it { should be_enabled }
-  it { should be_running }
-end
-
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.conf' do
-  its(:content) do
+  its('content') do
     should match(
       %r{vrrp_instance mysql-ipv4 {
 	state MASTER
@@ -30,7 +19,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.con
 end
 
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ipv4__.conf' do
-  its(:content) do
+  its('content') do
     should match(
       %r{vrrp_instance mysql-backend-ipv4 {
 	state MASTER
@@ -49,10 +38,10 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
   end
 end
 
-describe interface 'eth0' do
-  it { should have_ipv4_address '140.211.9.47/24' }
+describe command('ip addr show eth0') do
+  its('stdout') { should match /inet 140\.211\.9\.47\/24/ }
 end
 
-describe interface 'eth1' do
-  it { should have_ipv4_address '10.1.0.86/23' }
+describe command('ip addr show eth1') do
+  its('stdout') { should match /inet 10\.1\.0\.86\/23/ }
 end
