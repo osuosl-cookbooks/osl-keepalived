@@ -38,10 +38,19 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
   end
 end
 
-describe command('ip addr show eth0') do
-  its('stdout') { should match %r{inet 140\.211\.9\.47/24} }
-end
-
-describe command('ip addr show eth1') do
-  its('stdout') { should match %r{inet 10\.1\.0\.86/23} }
+[
+  ['eth0', %r{140\.211\.9\.47/24}],
+  ['eth1', %r{10\.1\.0\.86/23}],
+].each do |dev, ip|
+  60.times do
+    if inspec.command("ip addr show #{dev}").stdout.chomp =~ /inet #{ip}/
+      describe command("ip addr show #{dev}") do
+        its('stdout') { should match /inet #{ip}/ }
+      end
+      break
+    else
+      puts('Waiting...')
+      sleep(1)
+    end
+  end
 end
