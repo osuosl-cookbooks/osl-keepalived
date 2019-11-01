@@ -1,16 +1,5 @@
-require 'spec_helper'
-
-describe package 'keepalived' do
-  it { should be_installed }
-end
-
-describe service 'keepalived' do
-  it { should be_enabled }
-  it { should be_running }
-end
-
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-ipv4__.conf' do
-  its(:content) do
+  its('content') do
     should match(
       %r{vrrp_instance haproxy-osuosl-ipv4 {
 	state MASTER
@@ -30,7 +19,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-i
 end
 
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-ipv6__.conf' do
-  its(:content) do
+  its('content') do
     should match(
       %r{vrrp_instance haproxy-osuosl-ipv6 {
 	state MASTER
@@ -50,7 +39,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-i
 end
 
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-osuosl-group__.conf' do
-  its(:content) do
+  its('content') do
     should match(
       /vrrp_sync_group haproxy-osuosl-group {
 	group {
@@ -62,7 +51,6 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-osuosl
   end
 end
 
-describe interface 'eth0' do
-  it { should have_ipv4_address '140.211.9.53/24' }
-  it { should have_ipv6_address '2605:bc80:3010:104::8cd3:935/64' }
+describe command('ip address show eth0') do
+  its('stdout') { should match %r{inet 140\.211\.9\.53\/24[\s\S]*inet6 2605:bc80:3010:104::8cd3:935\/64} }
 end

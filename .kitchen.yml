@@ -4,6 +4,8 @@ provisioner:
   encrypted_data_bag_secret_key_path: test/integration/encrypted_data_bag_secret
   data_bags_path: test/integration/data_bags
 
+verifier: inspec
+
 suites:
   - name: default
     run_list:
