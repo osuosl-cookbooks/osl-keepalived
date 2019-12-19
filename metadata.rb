@@ -2,7 +2,7 @@ name             'osl-keepalived'
 maintainer       'Oregon State University'
 maintainer_email 'chef@osuosl.org'
 license          'Apache-2.0'
-chef_version     '>= 12.18' if respond_to?(:chef_version)
+chef_version     '>= 14.0'
 issues_url       'https://github.com/osuosl-cookbooks/osl-keepalived/issues'
 source_url       'https://github.com/osuosl-cookbooks/osl-keepalived'
 description      'Installs/Configures osl-keepalived'
