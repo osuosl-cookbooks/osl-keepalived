@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+0.2.5 (2019-12-23)
+------------------
+- Chef 14 post-migration fixes
+
 0.2.4 (2018-11-14)
 ------------------
 - Chef 13 fixes for osl-keepalived
