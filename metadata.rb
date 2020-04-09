@@ -13,3 +13,4 @@ depends          'firewall'
 depends          'keepalived', '~> 3.1.1'
 
 supports         'centos', '~> 7.0'
+supports         'centos', '~> 8.0'
