@@ -5,13 +5,13 @@ include_recipe 'firewall::default'
 include_recipe 'firewall::http'
 
 node.default['osl-keepalived']['master'] = {
-  'node1' => true,
-  'node2' => false,
+  'node1.novalocal' => true,
+  'node2.novalocal' => false,
 }
 
 node.default['osl-keepalived']['priority'] = {
-  'node1' => 200,
-  'node2' => 100,
+  'node1.novalocal' => 200,
+  'node2.novalocal' => 100,
 }
 
 include_recipe 'osl-keepalived::default'

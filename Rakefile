@@ -12,8 +12,6 @@ snakeoil_file_path = 'test/integration/data_bags/certificates/snakeoil.json'
 encrypted_data_bag_secret_path = 'test/integration/encrypted_data_bag_secret'
 current_dir = File.dirname(__FILE__)
 client_cfg = "#{current_dir}/test/chef-config"
-client_options = '--force-formatter -z --local-mode --listen ' \
-    "--config #{client_cfg}/knife.rb"
 
 ##
 # Run command wrapper
@@ -135,12 +133,8 @@ task test: [:style, :lint, :unit]
 
 task default: :test
 
-PROV_PATH = 'test/integration/provisioning'.freeze
-
 task :destroy_all do
-  Rake::Task[:destroy_machines].invoke
-  run_command('rm -rf Gemfile.lock && rm -rf Berksfile.lock && ' \
-    'rm -rf cookbooks/')
+  run_command('rm Gemfile.lock && rm Berksfile.lock && rm -rf cookbooks/')
 end
 
 desc 'Destroy machines'
@@ -160,12 +154,16 @@ task :create_key do
 File.binwrite('#{client_cfg}/validator.pem',
 OpenSSL::PKey::RSA.new(2048).to_pem)")
   end
+  unless File.exist?("#{client_cfg}/fakeclient.pem")
+    sh %(chef exec ruby -e "require 'openssl';
+File.binwrite('#{client_cfg}/fakeclient.pem',
+OpenSSL::PKey::RSA.new(2048).to_pem)")
+  end
 end
 
-desc 'Two node keepalived cluster'
-task keepalived: [:create_key, :berks_vendor] do
-  run_command("chef-client #{client_options} " \
-    "#{PROV_PATH}/keepalived.rb")
+desc 'Upload data to chef-zero server'
+task knife_upload: [:create_key, :berks_vendor] do
+  run_command('knife upload . --force -c test/chef-config/knife.rb')
 end
 
 desc 'Blow everything away'
