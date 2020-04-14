@@ -12,11 +12,17 @@ suites:
       - recipe[osl-keepalived::default]
   - name: haproxy_osuosl
     run_list:
+      - recipe[keepalived_test::eth1]
       - recipe[keepalived_test::hostname]
       - recipe[osl-keepalived::haproxy_osuosl]
     attributes:
+      osl-keepalived:
+         haproxy:
+            interface: 'eth1'
       keepalived_test:
         fqdn: lb1.osuosl.org
+      eth1:
+        ipv6: 2605:bc80:3010:104::8cd3:935/64
   - name: haproxy_phpbb
     run_list:
       - recipe[keepalived_test::hostname]

@@ -30,6 +30,13 @@ execute 'add-ip-10.1.0.123' do
   not_if 'ip a show dev eth1 | grep 10.1.0.123'
 end
 
+# if node['eth1']['ipv6']
+#   execute "add-ip-#{node['eth1']['ipv6']}" do
+#     command "ip addr add #{node['eth1']['ipv6']} dev eth1"
+#     not_if "ip a show dev eth1 | grep #{node['eth1']['ipv6']}"
+#   end
+# end
+
 execute 'set-eth1-up' do
   command 'ip link set dev eth1 up'
   not_if 'ip a show dev eth1 | grep UP'

@@ -32,7 +32,7 @@ secrets = data_bag_item('osl_keepalived', 'haproxy_osuosl')
 
 keepalived_vrrp_instance 'haproxy-osuosl-ipv4' do
   master node['osl-keepalived']['master'][node['fqdn']]
-  interface node['network']['default_interface']
+  interface node['osl-keepalived']['haproxy']['interface']
   virtual_router_id 1
   priority node['osl-keepalived']['priority'][node['fqdn']]
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
@@ -42,7 +42,7 @@ end
 
 keepalived_vrrp_instance 'haproxy-osuosl-ipv6' do
   master node['osl-keepalived']['master'][node['fqdn']]
-  interface node['network']['default_interface']
+  interface node['osl-keepalived']['haproxy']['interface']
   virtual_router_id 2
   priority node['osl-keepalived']['priority'][node['fqdn']]
   # Authentication isn't actually used with IPv6 (see https://tools.ietf.org/html/rfc5798#section-9)
