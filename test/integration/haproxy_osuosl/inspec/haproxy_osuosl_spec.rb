@@ -51,6 +51,15 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-osuosl
   end
 end
 
+describe service 'keepalived' do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
+end
+
+# give keepalived time to configure interface
+sleep 5
+
 describe command('ip address show eth1') do
   its('stdout') { should match %r{inet 140\.211\.9\.53\/24[\s\S]*inet6 2605:bc80:3010:104::8cd3:935\/64} }
 end
