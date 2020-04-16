@@ -27,3 +27,7 @@ clients/*
 cookbooks/*
 nodes/*
 vms/*
+
+# kitchen-terraform
+.terraform/
+terraform.*

@@ -1,1 +1,1 @@
-default['keepalived_test']['ip'] = node['fqdn'] == 'node1' ? 11 : 12
+default['keepalived_test']['ip'] = node['fqdn'].start_with?('node1') ? 11 : 12

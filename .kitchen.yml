@@ -32,3 +32,29 @@ suites:
     attributes:
       keepalived_test:
         fqdn: mysql3.osuosl.org
+  - name: multi-node
+    driver:
+      name: terraform
+      command_timeout: 1800
+    provisioner: terraform
+    verifier:
+      name: terraform
+      systems:
+        - name: node1
+          backend: ssh
+          hosts_output: node1
+          sudo: true
+          user: centos
+          controls:
+            - all
+            - node1
+          hostnames: node1
+        - name: node2
+          backend: ssh
+          hosts_output: node2
+          sudo: true
+          user: centos
+          controls:
+            - all
+            - node2
+          hostnames: node2

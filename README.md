@@ -55,6 +55,86 @@ To remedy this look for OpenStack VMs named with the same suites that you're
 testing using `nova list`, and remove them with `nova delete`. (Ideally, check
 with the owners before deleting their VMs).
 
+Provisioning Environment
+------------------------
+
+#### Prereqs
+
+- ChefDK 2.5.3 or later
+- Terraform
+- kitchen-terraform
+- OpenStack cluster
+
+Ensure you have the following in your ``.bashrc`` (or similar):
+
+```bash
+export TF_VAR_ssh_key_name="$OS_SSH_KEYPAIR"
+```
+
+#### General Layout
+
+This cookbook contains a [kitchen-terraform](https://github.com/newcontext-oss/kitchen-terraform)
+environment that can be used to test multi-node configurations. You can spin up
+this environment using `kitchen test multi-node`.
+
+If you want to create/converge only 1 VM you can use any of these commands:
+
+VM    | Command
+----- | --------------
+node1 | `terraform apply -target openstack_compute_instance_v2.node1`
+node2 | `terraform apply -target openstack_compute_instance_v2.node2`
+
+You can login to a VM by using one of these commands:
+```bash
+$ ssh centos@$(terraform output node1)
+$ ssh centos@$(terraform output node2)
+```
+
+When you are done testing the provisioning environment run
+``kitchen destroy multi-node``.
+
+Here is a table showing what each IP points to:
+
+Host  | IP
+----- | --------------
+VIP   | `192.168.60.10`
+node1 | `192.168.60.11`
+node2 | `192.168.60.12`
+
+#### Interacting with the chef-zero server
+
+All of these nodes are configured using a Chef Server which is a container
+running chef-zero. You can interact with the chef-zero server by doing the
+following:
+
+```bash
+$ CHEF_SERVER="$(terraform output chef_zero)" knife node list -c test/chef-config/knife.rb
+node1
+node2
+```
+
+In addition, on any node that has been deployed, you can re-run ``chef-client``
+like you normally would on a production system. This should allow you to do
+development on your multi-node environment as needed. **Just make sure you
+include the knife config otherwise you will be interacting with our production
+Chef server!**
+
+#### Using Terraform directly
+
+You do not need to use kitchen-terraform directly if you're just doing
+development. It's primarily useful for testing the multi-node cluster using
+inspec. You can simply deploy the cluster using terraform directly by doing
+the following:
+
+```bash
+# Sanity check
+$ terraform plan
+# Deploy the cluster
+$ terraform apply
+# Destroy the cluster
+$ terraform destroy
+```
+
 Contributing
 ------------
 
