@@ -12,7 +12,7 @@ suites:
       - recipe[osl-keepalived::default]
   - name: haproxy_osuosl
     run_list:
-      - recipe[keepalived_test::eth1]
+      - recipe[keepalived_test::haproxy_test]
       - recipe[keepalived_test::hostname]
       - recipe[osl-keepalived::haproxy_osuosl]
     attributes:
@@ -26,17 +26,27 @@ suites:
           ipv6: 2605:bc80:3010:104::8cd3:935/64
   - name: haproxy_phpbb
     run_list:
+      - recipe[keepalived_test::haproxy_test]
       - recipe[keepalived_test::hostname]
       - recipe[osl-keepalived::haproxy_phpbb]
     attributes:
+      osl-keepalived:
+         haproxy:
+            interface: 'eth1'
       keepalived_test:
         fqdn: lb1.phpbb.org
+        eth1:
+          ipv4: 140.211.9.50/24
+          ipv6: 2605:bc80:3010:104::8cd3:935/64
   - name: mysql2
     run_list:
+      - recipe[keepalived_test::mysql_test]
       - recipe[keepalived_test::hostname]
-      - recipe[keepalived_test::eth1]
       - recipe[osl-keepalived::mysql2]
     attributes:
+      osl-keepalived:
+         haproxy:
+            interface: 'eth2'
       keepalived_test:
         fqdn: mysql3.osuosl.org
   - name: multi-node
@@ -65,3 +75,9 @@ suites:
             - all
             - node2
           hostnames: node2
+        eth1:
+          ipv4: 140.211.9.50/24
+          ipv6: 2605:bc80:3010:104::8cd3:935/64
+        eth2:
+          ipv4: 140.211.9.50/24
+          ipv6: 2605:bc80:3010:104::8cd3:935/64

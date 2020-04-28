@@ -32,7 +32,7 @@ secrets = data_bag_item('osl_keepalived', 'mysql')
 
 keepalived_vrrp_instance 'mysql-ipv4' do
   master node['osl-keepalived']['master'][node['fqdn']]
-  interface node['network']['default_interface']
+  interface node['osl-keepalived']['haproxy']['interface']
   virtual_router_id 5
   priority node['osl-keepalived']['priority'][node['fqdn']]
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']

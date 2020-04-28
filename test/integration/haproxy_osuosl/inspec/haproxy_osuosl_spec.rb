@@ -57,9 +57,14 @@ describe service 'keepalived' do
   it { should be_running }
 end
 
-# give keepalived time to configure interface
-sleep 5
-
-describe command('ip address show eth1') do
+60.times do
+  if inspec.command('ip addr show eth1').stdout.chomp =~ %r{inet 140\.211\.9\.53\/24}
+    break
+  else
+    puts('Waiting for keepalived to configure eth1...')
+    sleep(1)
+  end
+end
+describe command('ip addr show eth1') do
   its('stdout') { should match %r{inet 140\.211\.9\.53\/24[\s\S]*inet6 2605:bc80:3010:104::8cd3:935\/64} }
 end
