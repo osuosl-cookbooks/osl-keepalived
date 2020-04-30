@@ -49,6 +49,10 @@ suites:
             interface: 'eth2'
       keepalived_test:
         fqdn: mysql3.osuosl.org
+        eth1:
+          ipv4: 140.211.9.50/24
+        eth2:
+          ipv4: 140.211.9.50/24
   - name: multi-node
     driver:
       name: terraform
@@ -75,9 +79,3 @@ suites:
             - all
             - node2
           hostnames: node2
-        eth1:
-          ipv4: 140.211.9.50/24
-          ipv6: 2605:bc80:3010:104::8cd3:935/64
-        eth2:
-          ipv4: 140.211.9.50/24
-          ipv6: 2605:bc80:3010:104::8cd3:935/64
