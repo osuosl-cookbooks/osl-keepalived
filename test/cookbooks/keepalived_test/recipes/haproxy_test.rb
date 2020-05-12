@@ -1,3 +1,5 @@
-require_relative './fake_interface.rb'
+node.default['keepalived_test']['interfaces'] = [
+  { 'name': 'eth1', 'ipv4': '140.211.9.50/24', 'ipv6': '2605:bc80:3010:104::8cd3:935/64' },
+]
 
-make_dummy('eth1', node['keepalived_test']['eth1']['ipv4'], node['keepalived_test']['eth1']['ipv6'])
+include_recipe 'keepalived_test::fake_int'

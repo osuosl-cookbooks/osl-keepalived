@@ -21,9 +21,6 @@ suites:
             interface: 'eth1'
       keepalived_test:
         fqdn: lb1.osuosl.org
-        eth1:
-          ipv4: 140.211.9.50/24
-          ipv6: 2605:bc80:3010:104::8cd3:935/64
   - name: haproxy_phpbb
     run_list:
       - recipe[keepalived_test::haproxy_test]
@@ -35,9 +32,6 @@ suites:
             interface: 'eth1'
       keepalived_test:
         fqdn: lb1.phpbb.org
-        eth1:
-          ipv4: 140.211.9.50/24
-          ipv6: 2605:bc80:3010:104::8cd3:935/64
   - name: mysql2
     run_list:
       - recipe[keepalived_test::mysql_test]
