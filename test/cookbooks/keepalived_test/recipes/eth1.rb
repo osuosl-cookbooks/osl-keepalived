@@ -25,9 +25,21 @@ execute 'create-fake-eth1' do
   not_if 'ip a show dev eth1'
 end
 
-execute 'add-ip-10.1.0.123' do
-  command 'ip addr add 10.1.0.123/23 dev eth1'
-  not_if 'ip a show dev eth1 | grep 10.1.0.123'
+execute "add-ip-#{node['keepalived_test']['eth1']['ipv4']}" do
+  command "ip addr add #{node['keepalived_test']['eth1']['ipv4']} dev eth1"
+  not_if "ip a show dev eth1 | grep #{node['keepalived_test']['eth1']['ipv4']}"
+end
+
+if node['keepalived_test']['eth1']['ipv6']
+  execute "add-ip-#{node['keepalived_test']['eth1']['ipv6']}" do
+    command "ip addr add #{node['keepalived_test']['eth1']['ipv6']} dev eth1"
+    not_if "ip a show dev eth1 | grep #{node['keepalived_test']['eth1']['ipv6']}"
+  end
+end
+
+execute 'set-eth1-multicast' do
+  command 'ip link set eth1 multicast on'
+  not_if 'ip a show dev eth1 | grep MULTICAST'
 end
 
 execute 'set-eth1-up' do

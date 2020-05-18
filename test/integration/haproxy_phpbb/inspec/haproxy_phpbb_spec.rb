@@ -4,7 +4,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-phpbb-ip
       %r{vrrp_instance haproxy-phpbb-ipv4 {
 	state MASTER
 	virtual_router_id 3
-	interface eth0
+	interface eth1
 	priority 200
 	authentication {
 		auth_type PASS
@@ -24,7 +24,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-phpbb-ip
       %r{vrrp_instance haproxy-phpbb-ipv6 {
 	state MASTER
 	virtual_router_id 4
-	interface eth0
+	interface eth1
 	priority 200
 	authentication {
 		auth_type PASS
@@ -51,6 +51,14 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-phpbb-
   end
 end
 
-describe command('ip address show eth0') do
+60.times do
+  if inspec.command('ip addr show eth1').stdout.chomp =~ %r{inet 140\.211\.15\.244\/24}
+    break
+  else
+    puts('Waiting for keepalived to configure eth1...')
+    sleep(1)
+  end
+end
+describe command('ip addr show eth1') do
   its('stdout') { should match %r{inet 140\.211\.15\.244\/24[\s\S]*inet6 2605:bc80:3010:103::8cd3:ff4\/64} }
 end

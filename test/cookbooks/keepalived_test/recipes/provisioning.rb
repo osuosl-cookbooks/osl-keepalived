@@ -18,6 +18,7 @@ include_recipe 'osl-keepalived::default'
 
 osl_ifconfig "192.168.60.#{node['keepalived_test']['ip']}" do
   onboot 'yes'
+  nm_controlled 'yes'
   mask '255.255.255.0'
   network '192.168.60.0'
   ipv6init 'yes'

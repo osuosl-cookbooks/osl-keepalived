@@ -4,7 +4,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.con
       %r{vrrp_instance mysql-ipv4 {
 	state MASTER
 	virtual_router_id 5
-	interface eth0
+	interface eth2
 	priority 200
 	authentication {
 		auth_type PASS
@@ -39,18 +39,18 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
 end
 
 [
-  ['eth0', %r{140\.211\.9\.47/24}],
+  ['eth2', %r{140\.211\.9\.47/24}],
   ['eth1', %r{10\.1\.0\.86/23}],
 ].each do |dev, ip|
   60.times do
     if inspec.command("ip addr show #{dev}").stdout.chomp =~ /inet #{ip}/
-      describe command("ip addr show #{dev}") do
-        its('stdout') { should match /inet #{ip}/ }
-      end
       break
     else
-      puts('Waiting...')
+      puts("Waiting for keepalived to configure #{dev}...")
       sleep(1)
     end
+  end
+  describe command("ip addr show #{dev}") do
+    its('stdout') { should match /inet #{ip}/ }
   end
 end

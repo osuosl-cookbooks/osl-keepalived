@@ -4,7 +4,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-i
       %r{vrrp_instance haproxy-osuosl-ipv4 {
 	state MASTER
 	virtual_router_id 1
-	interface eth0
+	interface eth1
 	priority 200
 	authentication {
 		auth_type PASS
@@ -24,7 +24,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-i
       %r{vrrp_instance haproxy-osuosl-ipv6 {
 	state MASTER
 	virtual_router_id 2
-	interface eth0
+	interface eth1
 	priority 200
 	authentication {
 		auth_type PASS
@@ -51,6 +51,20 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-osuosl
   end
 end
 
-describe command('ip address show eth0') do
+describe service 'keepalived' do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
+end
+
+60.times do
+  if inspec.command('ip addr show eth1').stdout.chomp =~ %r{inet 140\.211\.9\.53\/24}
+    break
+  else
+    puts('Waiting for keepalived to configure eth1...')
+    sleep(1)
+  end
+end
+describe command('ip addr show eth1') do
   its('stdout') { should match %r{inet 140\.211\.9\.53\/24[\s\S]*inet6 2605:bc80:3010:104::8cd3:935\/64} }
 end
