@@ -118,11 +118,6 @@ RuboCop::RakeTask.new(:style) do |task|
   task.options << '--display-cop-names'
 end
 
-desc 'Run FoodCritic (lint) tests'
-task :lint do
-  run_command('foodcritic --epic-fail any .')
-end
-
 desc 'Run RSpec (unit) tests'
 task :unit do
   run_command('rm -f Berksfile.lock')
@@ -130,7 +125,7 @@ task :unit do
 end
 
 desc 'Run all tests'
-task test: [:style, :lint, :unit]
+task test: [:style, :unit]
 
 task default: :test
 
