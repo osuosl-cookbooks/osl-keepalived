@@ -72,6 +72,7 @@ resource "openstack_compute_instance_v2" "node1" {
         port = "${openstack_networking_port_v2.keepalived_node1_port.id}"
     }
     provisioner "chef" {
+        client_options  = ["chef_license 'accept'"]
         run_list        = ["recipe[keepalived_test::provisioning]"]
         node_name       = "node1"
         secret_key      = "${file("test/integration/encrypted_data_bag_secret")}"
@@ -100,6 +101,7 @@ resource "openstack_compute_instance_v2" "node2" {
         port = "${openstack_networking_port_v2.keepalived_node2_port.id}"
     }
     provisioner "chef" {
+        client_options  = ["chef_license 'accept'"]
         run_list        = ["recipe[keepalived_test::provisioning]"]
         node_name       = "node2"
         secret_key      = "${file("test/integration/encrypted_data_bag_secret")}"
