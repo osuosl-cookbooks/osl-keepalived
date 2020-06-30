@@ -14,6 +14,9 @@ suites:
     run_list:
       - recipe[osl-keepalived::default]
   - name: haproxy_osuosl
+    provisioner:
+      name: chef_solo
+      enforce_idempotency: false # disabled due to execute[enable-dummy-nics]
     run_list:
       - recipe[keepalived_test::haproxy_test]
       - recipe[keepalived_test::hostname]
@@ -25,6 +28,9 @@ suites:
       keepalived_test:
         fqdn: lb1.osuosl.org
   - name: haproxy_phpbb
+    provisioner:
+      name: chef_solo
+      enforce_idempotency: false # disabled due to execute[    enable-dummy-nics]
     run_list:
       - recipe[keepalived_test::haproxy_test]
       - recipe[keepalived_test::hostname]
@@ -36,6 +42,9 @@ suites:
       keepalived_test:
         fqdn: lb1.phpbb.org
   - name: mysql2
+    provisioner:
+      name: chef_solo
+      enforce_idempotency: false # disabled due to execute[    enable-dummy-nics]
     run_list:
       - recipe[keepalived_test::mysql_test]
       - recipe[keepalived_test::hostname]
