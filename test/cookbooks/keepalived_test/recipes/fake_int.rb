@@ -18,6 +18,7 @@
 
 execute 'enable-dummy-nics' do
   command "modprobe dummy numdummies=#{node['keepalived_test']['interfaces'].length}"
+  only_if { node['kernel']['modules']['dummy'].nil? }
 end
 
 i = 0
