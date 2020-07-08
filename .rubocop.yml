@@ -2,7 +2,6 @@ AllCops:
   TargetChefVersion: 15.latest
   Exclude:
     - 'cookbooks/**/*'
-    - 'test/integration/**/*'
 ChefModernize/FoodcriticComments:
   Enabled: true
 ChefStyle/CopyrightCommentFormat:

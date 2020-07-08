@@ -1,3 +1,4 @@
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.conf' do
   its('content') do
     should match(
@@ -17,7 +18,9 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.con
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ipv4__.conf' do
   its('content') do
     should match(
@@ -37,6 +40,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
 [
   ['eth2', %r{140\.211\.9\.47/24}],

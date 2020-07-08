@@ -1,3 +1,4 @@
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-phpbb-ipv4__.conf' do
   its('content') do
     should match(
@@ -17,7 +18,9 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-phpbb-ip
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-phpbb-ipv6__.conf' do
   its('content') do
     should match(
@@ -37,7 +40,9 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-phpbb-ip
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-phpbb-group__.conf' do
   its('content') do
     should match(
@@ -50,6 +55,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-phpbb-
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
 60.times do
   if inspec.command('ip addr show eth1').stdout.chomp =~ %r{inet 140\.211\.15\.244\/24}
