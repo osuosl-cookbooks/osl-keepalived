@@ -1,3 +1,4 @@
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-ipv4__.conf' do
   its('content') do
     should match(
@@ -17,7 +18,9 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-i
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-ipv6__.conf' do
   its('content') do
     should match(
@@ -37,7 +40,9 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__haproxy-osuosl-i
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
+# rubocop:disable Layout/IndentationStyle
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-osuosl-group__.conf' do
   its('content') do
     should match(
@@ -50,6 +55,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-osuosl
     )
   end
 end
+# rubocop:enable Layout/IndentationStyle
 
 describe service 'keepalived' do
   it { should be_installed }

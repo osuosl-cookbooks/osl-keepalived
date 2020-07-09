@@ -2,7 +2,7 @@
 # Cookbook:: keepalived_test
 # Recipe:: eth1
 #
-# Copyright:: 2018, Oregon State University
+# Copyright:: 2018-2020, Oregon State University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 
 execute 'enable-dummy-nics' do
   command "modprobe dummy numdummies=#{node['keepalived_test']['interfaces'].length}"
+  only_if { node['kernel']['modules']['dummy'].nil? }
 end
 
 i = 0
