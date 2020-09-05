@@ -6,3 +6,5 @@ ChefModernize/FoodcriticComments:
   Enabled: true
 ChefStyle/CopyrightCommentFormat:
   Enabled: true
+Style/RegexpLiteral:
+  EnforcedStyle: mixed
