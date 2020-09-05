@@ -2,20 +2,21 @@
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.conf' do
   its('content') do
     should match(
-      %r{vrrp_instance mysql-ipv4 {
-	state MASTER
-	virtual_router_id 5
-	interface eth2
-	priority 200
-	authentication {
-		auth_type PASS
-		auth_pass foobar
-		}
-	virtual_ipaddress {
-		140.211.9.47/24
-		}
-	}}
-    )
+%r(vrrp_instance mysql-ipv4 {
+  virtual_router_id 5
+  state MASTER
+  interface eth2
+  priority 200
+  authentication {
+    auth_type PASS
+    auth_pass foobar
+  }
+  virtual_ipaddress {
+    140.211.9.47/24
+  }
+
+
+}))
   end
 end
 # rubocop:enable Layout/IndentationStyle
@@ -24,20 +25,21 @@ end
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ipv4__.conf' do
   its('content') do
     should match(
-      %r{vrrp_instance mysql-backend-ipv4 {
-	state MASTER
-	virtual_router_id 6
-	interface eth1
-	priority 200
-	authentication {
-		auth_type PASS
-		auth_pass foobar
-		}
-	virtual_ipaddress {
-		10.1.0.86/23
-		}
-	}}
-    )
+%r(vrrp_instance mysql-backend-ipv4 {
+  virtual_router_id 6
+  state MASTER
+  interface eth1
+  priority 200
+  authentication {
+    auth_type PASS
+    auth_pass foobar
+  }
+  virtual_ipaddress {
+    10.1.0.86/23
+  }
+
+
+}))
   end
 end
 # rubocop:enable Layout/IndentationStyle
