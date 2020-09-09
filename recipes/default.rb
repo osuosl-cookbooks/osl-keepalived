@@ -17,4 +17,9 @@
 # limitations under the License.
 
 include_recipe 'firewall::vrrp'
-include_recipe 'keepalived::default'
+
+keepalived_install 'keepalived'
+
+service 'keepalived' do
+  action [:enable, :start]
+end

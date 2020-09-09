@@ -1,8 +1,10 @@
 AllCops:
-  TargetChefVersion: 15.latest
+  TargetChefVersion: 16.latest
   Exclude:
     - 'cookbooks/**/*'
 ChefModernize/FoodcriticComments:
   Enabled: true
 ChefStyle/CopyrightCommentFormat:
   Enabled: true
+Style/RegexpLiteral:
+  EnforcedStyle: mixed
