@@ -83,7 +83,7 @@ suites:
       name: terraform
       command_timeout: 1800
       variables:
-        centos_image: "CentOS 8.1"
+        centos_image: "CentOS 8.2"
     excludes:
       - centos-7
     provisioner: terraform
