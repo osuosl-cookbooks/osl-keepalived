@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+1.0.1 (2021-01-19)
+------------------
+- Cookstyle fixes
+
 1.0.0 (2020-09-09)
 ------------------
 - chef 16 update
