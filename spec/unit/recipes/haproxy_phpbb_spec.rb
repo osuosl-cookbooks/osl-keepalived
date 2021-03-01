@@ -31,10 +31,10 @@ describe 'osl-keepalived::haproxy_phpbb' do
       end
     end
 
-    context "#{p[:platform]} #{p[:version]} for lb1.phpbb.org" do
+    context "#{p[:platform]} #{p[:version]} for lb1.phpbb.com" do
       cached(:chef_run) do
         ChefSpec::SoloRunner.new(p) do |node|
-          node.automatic_attrs['fqdn'] = 'lb1.phpbb.org'
+          node.automatic_attrs['fqdn'] = 'lb1.phpbb.com'
         end.converge(described_recipe)
       end
       it do
@@ -58,10 +58,10 @@ describe 'osl-keepalived::haproxy_phpbb' do
         )
       end
     end
-    context "#{p[:platform]} #{p[:version]} for lb2.phpbb.org" do
+    context "#{p[:platform]} #{p[:version]} for lb2.phpbb.com" do
       cached(:chef_run) do
         ChefSpec::SoloRunner.new(p) do |node|
-          node.automatic_attrs['fqdn'] = 'lb2.phpbb.org'
+          node.automatic_attrs['fqdn'] = 'lb2.phpbb.com'
         end.converge(described_recipe)
       end
       it do
