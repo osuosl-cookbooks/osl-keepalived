@@ -17,13 +17,13 @@
 # limitations under the License.
 #
 node.default['osl-keepalived']['master'] = {
-  'lb1.phpbb.org' => true,
-  'lb2.phpbb.org' => false,
+  'lb1.phpbb.com' => true,
+  'lb2.phpbb.com' => false,
 }
 
 node.default['osl-keepalived']['priority'] = {
-  'lb1.phpbb.org' => 200,
-  'lb2.phpbb.org' => 100,
+  'lb1.phpbb.com' => 200,
+  'lb2.phpbb.com' => 100,
 }
 
 include_recipe 'osl-keepalived::default'

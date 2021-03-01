@@ -34,7 +34,7 @@ suites:
          haproxy:
             interface: 'eth1'
       keepalived_test:
-        fqdn: lb1.phpbb.org
+        fqdn: lb1.phpbb.com
   - name: mysql2
     run_list:
       - recipe[keepalived_test::mysql_test]
