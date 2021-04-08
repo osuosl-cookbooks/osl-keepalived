@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+1.1.0 (2021-04-08)
+------------------
+- Update required chef version
+
 1.0.2 (2021-03-01)
 ------------------
 - Use correct TLD for phpbb nodes
