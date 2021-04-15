@@ -9,12 +9,10 @@ describe 'osl-keepalived::default' do
       it 'converges successfully' do
         expect { chef_run }.to_not raise_error
       end
-      it do
-        expect(chef_run).to include_recipe 'firewall::vrrp'
-      end
-      it do
-        expect(chef_run).to install_keepalived_install('keepalived')
-      end
+
+      it { expect(chef_run).to accept_osl_firewall_vrrp('osl-keepalived') }
+
+      it { expect(chef_run).to install_keepalived_install('keepalived') }
     end
   end
 end

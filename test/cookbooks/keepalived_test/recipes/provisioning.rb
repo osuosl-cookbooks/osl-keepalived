@@ -1,8 +1,4 @@
-node.override['firewall']['vrrp']['range']['4'] = %w(192.168.60.10/24)
-node.override['firewall']['vrrp']['range']['6'] = %w(fc00::/64)
-
-include_recipe 'firewall::default'
-include_recipe 'firewall::http'
+osl_firewall_port 'http'
 
 node.default['osl-keepalived']['master'] = {
   'node1.novalocal' => true,
@@ -15,6 +11,12 @@ node.default['osl-keepalived']['priority'] = {
 }
 
 include_recipe 'osl-keepalived::default'
+
+edit_resource!(:osl_firewall_vrrp, 'osl-keepalived') do
+  allowed_ipv4 %w(192.168.60.10/24)
+  allowed_ipv6 %w(fc00::/64)
+  osl_only false
+end
 
 osl_ifconfig "192.168.60.#{node['keepalived_test']['ip']}" do
   onboot 'yes'

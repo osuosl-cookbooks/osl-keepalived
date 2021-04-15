@@ -8,7 +8,7 @@ source_url       'https://github.com/osuosl-cookbooks/osl-keepalived'
 description      'Installs/Configures osl-keepalived'
 version          '1.1.0'
 
-depends          'firewall'
+depends          'osl-firewall'
 depends          'keepalived', '~> 5.1.0'
 
 supports         'centos', '~> 7.0'
