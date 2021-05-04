@@ -45,8 +45,8 @@ end
 # rubocop:enable Layout/IndentationStyle
 
 [
-  ['eth2', %r{140\.211\.9\.47/24}],
-  ['eth1', %r{10\.1\.0\.86/23}],
+  ['eth2', '140.211.9.47/24'],
+  ['eth1', '10.1.0.86/23'],
 ].each do |dev, ip|
   60.times do
     if inspec.command("ip addr show #{dev}").stdout.chomp =~ /inet #{ip}/
@@ -56,7 +56,8 @@ end
       sleep(1)
     end
   end
-  describe command("ip addr show #{dev}") do
-    its('stdout') { should match /inet #{ip}/ }
+
+  describe interface dev do
+    its('ipv4_cidrs') { should include ip }
   end
 end
