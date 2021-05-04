@@ -66,6 +66,7 @@ end
     sleep(1)
   end
 end
-describe command('ip addr show eth1') do
-  its('stdout') { should match %r{inet 140\.211\.9\.53\/24[\s\S]*inet6 2605:bc80:3010:104::8cd3:935\/64} }
+describe interface 'eth1' do
+  its('ipv4_cidrs') { should include '140.211.9.53/24' }
+  its('ipv6_cidrs') { should include '2605:bc80:3010:104::8cd3:935/64' }
 end
