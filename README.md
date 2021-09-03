@@ -18,7 +18,7 @@ This is OSL's wrapper cookbook for utilizing the [keepalived cookbook](https://s
 
 | Key                                    | Description                     |
 |----------------------------------------|---------------------------------|
-| `['osl-keepalived']['default_master']` | FQDN of the default master node |
+| `['osl-keepalived']['primary']` | FQDN of the default master node |
 
 ## Usage
 

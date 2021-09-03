@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-node.default['osl-keepalived']['master'] = {
+node.default['osl-keepalived']['primary'] = {
   'mysql3.osuosl.org' => true,
   'mysql4.osuosl.org' => false,
 }
@@ -31,7 +31,7 @@ include_recipe 'osl-keepalived::default'
 secrets = data_bag_item('osl_keepalived', 'mysql')
 
 keepalived_vrrp_instance 'mysql-ipv4' do
-  master node['osl-keepalived']['master'][node['fqdn']]
+  master node['osl-keepalived']['primary'][node['fqdn']]
   interface node['osl-keepalived']['haproxy']['interface']
   virtual_router_id 5
   priority node['osl-keepalived']['priority'][node['fqdn']]
@@ -41,7 +41,7 @@ keepalived_vrrp_instance 'mysql-ipv4' do
 end
 
 keepalived_vrrp_instance 'mysql-backend-ipv4' do
-  master node['osl-keepalived']['master'][node['fqdn']]
+  master node['osl-keepalived']['primary'][node['fqdn']]
   interface 'eth1'
   virtual_router_id 6
   priority node['osl-keepalived']['priority'][node['fqdn']]
