@@ -1,6 +1,6 @@
 osl_firewall_port 'http'
 
-node.default['osl-keepalived']['master'] = {
+node.default['osl-keepalived']['primary'] = {
   'node1.novalocal' => true,
   'node2.novalocal' => false,
 }
@@ -29,7 +29,7 @@ osl_ifconfig "192.168.60.#{node['keepalived_test']['ip']}" do
 end
 
 keepalived_vrrp_instance 'default_ipv4' do
-  master node['osl-keepalived']['master'][node['fqdn']]
+  master node['osl-keepalived']['primary'][node['fqdn']]
   interface 'eth1'
   virtual_router_id 1
   priority node['osl-keepalived']['priority'][node['fqdn']]
@@ -39,7 +39,7 @@ keepalived_vrrp_instance 'default_ipv4' do
 end
 
 keepalived_vrrp_instance 'default_ipv6' do
-  master node['osl-keepalived']['master'][node['fqdn']]
+  master node['osl-keepalived']['primary'][node['fqdn']]
   interface 'eth1'
   virtual_router_id 2
   priority node['osl-keepalived']['priority'][node['fqdn']]
