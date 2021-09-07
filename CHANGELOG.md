@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.1.0 (2021-09-07)
+------------------
+- Changes to terminology, mainly remove the term 'master'
+
 2.0.0 (2021-05-25)
 ------------------
 - Update to new osl-firewall resources
