@@ -59,8 +59,7 @@ suites:
       name: terraform
       command_timeout: 1800
     excludes:
-      - centos-8
-      - centos-stream-8
+      - centos_stream-8
     provisioner: terraform
     verifier:
       name: terraform
@@ -89,10 +88,9 @@ suites:
       name: terraform
       command_timeout: 1800
       variables:
-        centos_image: "CentOS 8.2"
+        centos_image: "CentOS Stream 8"
     excludes:
       - centos-7
-      - centos-stream-8
     provisioner: terraform
     verifier:
       name: terraform
