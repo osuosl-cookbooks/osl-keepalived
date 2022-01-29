@@ -9,8 +9,7 @@ description      'Installs/Configures osl-keepalived'
 version          '2.1.0'
 
 depends          'osl-firewall'
-depends          'keepalived', '~> 5.1.0'
+depends          'keepalived', '~> 6.0.0'
 
 supports         'centos', '~> 7.0'
-supports         'centos', '~> 8.0'
 supports         'centos_stream', '~> 8.0'

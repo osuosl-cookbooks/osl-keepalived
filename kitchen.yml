@@ -13,6 +13,7 @@ suites:
   - name: default
     run_list:
       - recipe[osl-keepalived::default]
+
   - name: haproxy_osuosl
     run_list:
       - recipe[keepalived_test::haproxy_test]
@@ -24,6 +25,7 @@ suites:
             interface: 'eth1'
       keepalived_test:
         fqdn: lb1.osuosl.org
+
   - name: haproxy_phpbb
     run_list:
       - recipe[keepalived_test::haproxy_test]
@@ -35,6 +37,7 @@ suites:
             interface: 'eth1'
       keepalived_test:
         fqdn: lb1.phpbb.com
+
   - name: mysql2
     run_list:
       - recipe[keepalived_test::mysql_test]
@@ -50,61 +53,63 @@ suites:
           ipv4: 140.211.9.50/24
         eth2:
           ipv4: 140.211.9.50/24
-#  - name: multi-node-7
-#    driver:
-#      name: terraform
-#      command_timeout: 1800
-#    excludes:
-#      - centos-8
-#    provisioner: terraform
-#    verifier:
-#      name: terraform
-#      systems:
-#        - name: node1
-#          backend: ssh
-#          hosts_output: node1
-#          sudo: true
-#          user: centos
-#          controls:
-#            - all
-#            - node1
-#          hostnames: node1
-#        - name: node2
-#          backend: ssh
-#          hosts_output: node2
-#          sudo: true
-#          user: centos
-#          controls:
-#            - all
-#            - node2
-#          hostnames: node2
-#  - name: multi-node-8
-#    driver:
-#      name: terraform
-#      command_timeout: 1800
-#      variables:
-#        centos_image: "CentOS 8.2"
-#    excludes:
-#      - centos-7
-#    provisioner: terraform
-#    verifier:
-#      name: terraform
-#      systems:
-#        - name: node1
-#          backend: ssh
-#          hosts_output: node1
-#          sudo: true
-#          user: centos
-#          controls:
-#            - all
-#            - node1
-#          hostnames: node1
-#        - name: node2
-#          backend: ssh
-#          hosts_output: node2
-#          sudo: true
-#          user: centos
-#          controls:
-#            - all
-#            - node2
-#          hostnames: node2
+
+  - name: multi-node-7
+    driver:
+      name: terraform
+      command_timeout: 1800
+    excludes:
+      - centos_stream-8
+    provisioner: terraform
+    verifier:
+      name: terraform
+      systems:
+        - name: node1
+          backend: ssh
+          hosts_output: node1
+          sudo: true
+          user: centos
+          controls:
+            - all
+            - node1
+          hostnames: node1
+        - name: node2
+          backend: ssh
+          hosts_output: node2
+          sudo: true
+          user: centos
+          controls:
+            - all
+            - node2
+          hostnames: node2
+
+  - name: multi-node-8
+    driver:
+      name: terraform
+      command_timeout: 1800
+      variables:
+        centos_image: "CentOS Stream 8"
+    excludes:
+      - centos-7
+    provisioner: terraform
+    verifier:
+      name: terraform
+      systems:
+        - name: node1
+          backend: ssh
+          hosts_output: node1
+          sudo: true
+          user: centos
+          controls:
+            - all
+            - node1
+          hostnames: node1
+        - name: node2
+          backend: ssh
+          hosts_output: node2
+          sudo: true
+          user: centos
+          controls:
+            - all
+            - node2
+          hostnames: node2
