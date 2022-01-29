@@ -6,7 +6,7 @@ chef_version     '>= 16.0'
 issues_url       'https://github.com/osuosl-cookbooks/osl-keepalived/issues'
 source_url       'https://github.com/osuosl-cookbooks/osl-keepalived'
 description      'Installs/Configures osl-keepalived'
-version          '2.1.0'
+version          '2.2.0'
 
 depends          'osl-firewall'
 depends          'keepalived', '~> 6.0.0'

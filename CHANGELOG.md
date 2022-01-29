@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.2.0 (2022-01-29)
+------------------
+- Bump keepalived to Chef 17-compliant version
+
 2.1.0 (2021-09-07)
 ------------------
 - Changes to terminology, mainly remove the term 'master'
