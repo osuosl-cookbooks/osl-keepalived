@@ -37,10 +37,24 @@ suites:
             interface: 'eth1'
       keepalived_test:
         fqdn: lb1.phpbb.com
+  
+  - name: mysql1
+    run_list:
+      - recipe[keepalived_test::mysql_vip1_test]
+      - recipe[keepalived_test::hostname]
+      - recipe[osl-keepalived::mysql1]
+    attributes:
+      osl-keepalived:
+         haproxy:
+            interface: 'eth1'
+      keepalived_test:
+        fqdn: mysql1.osuosl.org
+        eth1:
+          ipv4: 140.211.15.175/24
 
   - name: mysql2
     run_list:
-      - recipe[keepalived_test::mysql_test]
+      - recipe[keepalived_test::mysql_vip2_test]
       - recipe[keepalived_test::hostname]
       - recipe[osl-keepalived::mysql2]
     attributes:
