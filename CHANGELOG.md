@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.3.0 (2023-04-27)
+------------------
+- Add basic preparation changes for Alma Linux 8 
+
 2.2.0 (2022-01-29)
 ------------------
 - Bump keepalived to Chef 17-compliant version
