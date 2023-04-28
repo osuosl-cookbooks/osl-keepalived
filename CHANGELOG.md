@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.4.0 (2023-04-28)
+------------------
+- Add mysql-vip1 configuration
+
 2.3.0 (2023-04-27)
 ------------------
 - Add basic preparation changes for Alma Linux 8 
