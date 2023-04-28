@@ -1,0 +1,10 @@
+{
+  "id": "mysql_vip1",
+  "auth_pass": {
+    "encrypted_data": "i7Av0+LFUA+LZvAJ/6F46pQsk25okl2pwOuIAm0wP/s=\n",
+    "hmac": "uF2eS8h6gsX7sjlBSihhNNmMCcDB7Uqoif/9Q8ZXBC0=\n",
+    "iv": "hW5r0D8OIp6RMxBwXlJ5JA==\n",
+    "version": 2,
+    "cipher": "aes-256-cbc"
+  }
+}
