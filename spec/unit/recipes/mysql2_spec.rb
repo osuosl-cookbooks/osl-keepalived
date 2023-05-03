@@ -2,7 +2,7 @@ require_relative '../../spec_helper'
 
 describe 'osl-keepalived::mysql2' do
   before do
-    stub_data_bag_item('osl_keepalived', 'mysql').and_return(
+    stub_data_bag_item('osl_keepalived', 'mysql_vip2').and_return(
       id: 'mysql',
       auth_pass: 'foobar'
     )
