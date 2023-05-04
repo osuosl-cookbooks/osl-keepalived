@@ -28,7 +28,7 @@ node.default['osl-keepalived']['priority'] = {
 
 include_recipe 'osl-keepalived::default'
 
-secrets = data_bag_item('osl_keepalived', 'mysql')
+secrets = data_bag_item('osl_keepalived', 'mysql_vip2')
 
 keepalived_vrrp_instance 'mysql-ipv4' do
   master node['osl-keepalived']['primary'][node['fqdn']]
