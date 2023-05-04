@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.4.1 (2023-05-04)
+------------------
+- Use proper mysql vip2 databag name
+
 2.4.0 (2023-04-28)
 ------------------
 - Add mysql-vip1 configuration
