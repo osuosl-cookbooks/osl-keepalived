@@ -7,7 +7,7 @@ This is OSL's wrapper cookbook for utilizing the [keepalived cookbook](https://s
 ### Platforms
 
 - CentOS 7
-- CentOS 8
+- AlmaLinux 8
 
 ### Cookbooks
 
