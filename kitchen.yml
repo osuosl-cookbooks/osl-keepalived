@@ -74,7 +74,6 @@ suites:
       command_timeout: 1800
     excludes:
       - almalinux-8
-      - centos_stream-8
     provisioner: terraform
     verifier:
       name: terraform
