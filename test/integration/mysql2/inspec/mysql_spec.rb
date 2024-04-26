@@ -5,7 +5,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.con
 %r(vrrp_instance mysql-ipv4 {
   virtual_router_id 5
   state MASTER
-  interface eth2
+  interface eno1
   priority 200
   authentication {
     auth_type PASS
@@ -28,7 +28,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
 %r(vrrp_instance mysql-backend-ipv4 {
   virtual_router_id 6
   state MASTER
-  interface eth1
+  interface eno2
   priority 200
   authentication {
     auth_type PASS
@@ -45,8 +45,8 @@ end
 # rubocop:enable Layout/IndentationStyle
 
 [
-  ['eth2', '140.211.9.47/24'],
-  ['eth1', '10.1.0.86/23'],
+  ['eno1', '140.211.9.47/24'],
+  ['eno2', '10.1.0.86/23'],
 ].each do |dev, ip|
   60.times do
     if inspec.command("ip addr show #{dev}").stdout.chomp =~ /inet #{ip}/

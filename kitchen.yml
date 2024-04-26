@@ -60,13 +60,15 @@ suites:
     attributes:
       osl-keepalived:
          haproxy:
-            interface: 'eth2'
+            interface: 'eno1'
       keepalived_test:
         fqdn: mysql3.osuosl.org
-        eth1:
+        eno1:
           ipv4: 140.211.9.50/24
-        eth2:
+        eno2:
           ipv4: 140.211.9.50/24
+    excludes:
+      - centos-7
 
   - name: multi-node-7
     driver:
