@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.4.2 (2024-04-26)
+------------------
+- Update NICs on mysql-vip2 cluster
+
 2.4.1 (2023-05-04)
 ------------------
 - Use proper mysql vip2 databag name
