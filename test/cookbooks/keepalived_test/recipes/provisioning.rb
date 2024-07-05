@@ -18,14 +18,13 @@ edit_resource!(:osl_firewall_vrrp, 'osl-keepalived') do
   osl_only false
 end
 
-osl_ifconfig "192.168.60.#{node['keepalived_test']['ip']}" do
-  onboot 'yes'
+osl_ifconfig 'eth1' do
   nm_controlled 'yes'
   mask '255.255.255.0'
   network '192.168.60.0'
+  ipv4addr "192.168.60.#{node['keepalived_test']['ip']}"
   ipv6init 'yes'
   ipv6addr "fc00::#{node['keepalived_test']['ip']}"
-  device 'eth1'
 end
 
 keepalived_vrrp_instance 'default_ipv4' do
