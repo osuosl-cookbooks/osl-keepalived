@@ -12,4 +12,3 @@ depends          'osl-firewall'
 depends          'keepalived', '~> 6.0.0'
 
 supports         'almalinux', '~> 8.0'
-supports         'centos', '~> 7.0'
