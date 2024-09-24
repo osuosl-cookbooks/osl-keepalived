@@ -16,9 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe 'osl-selinux'
 osl_firewall_vrrp 'osl-keepalived'
 
 keepalived_install 'keepalived'
+selinux_module 'keepalived_custom' do
+  source 'keepalived_custom.te'
+end
 
 service 'keepalived' do
   action [:enable, :start]
