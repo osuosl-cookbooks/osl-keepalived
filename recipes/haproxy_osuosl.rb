@@ -57,3 +57,7 @@ keepalived_vrrp_sync_group 'haproxy-osuosl-group' do
   group %w(haproxy-osuosl-ipv4 haproxy-osuosl-ipv6)
   notifies :reload, 'service[keepalived]'
 end
+
+service 'keepalived' do
+  action [:enable, :start]
+end
