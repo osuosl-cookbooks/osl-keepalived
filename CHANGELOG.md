@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.6.0 (2024-11-20)
+------------------
+- Support for AlmaLinux 9
+
 2.5.0 (2024-07-05)
 ------------------
 - Remove Support for CentOS 7
