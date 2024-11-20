@@ -57,3 +57,7 @@ keepalived_vrrp_sync_group 'haproxy-phpbb-group' do
   group %w(haproxy-phpbb-ipv4 haproxy-phpbb-ipv6)
   notifies :reload, 'service[keepalived]'
 end
+
+service 'keepalived' do
+  action [:enable, :start]
+end

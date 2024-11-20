@@ -10,9 +10,10 @@ describe 'osl-keepalived::default' do
         expect { chef_run }.to_not raise_error
       end
 
-      it { expect(chef_run).to accept_osl_firewall_vrrp('osl-keepalived') }
-
-      it { expect(chef_run).to install_keepalived_install('keepalived') }
+      it { is_expected.to include_recipe 'osl-selinux' }
+      it { is_expected.to accept_osl_firewall_vrrp 'osl-keepalived' }
+      it { is_expected.to install_keepalived_install 'keepalived' }
+      it { is_expected.to create_selinux_module('keepalived_custom').with(source: 'keepalived_custom.te') }
     end
   end
 end

@@ -49,3 +49,7 @@ keepalived_vrrp_instance 'mysql-backend-ipv4' do
   virtual_ipaddress %w(10.1.0.86/23)
   notifies :reload, 'service[keepalived]'
 end
+
+service 'keepalived' do
+  action [:enable, :start]
+end
