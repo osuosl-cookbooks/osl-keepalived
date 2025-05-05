@@ -2,7 +2,7 @@
 # Cookbook:: osl-keepalived
 # Recipe:: mysql
 #
-# Copyright:: 2018-2024, Oregon State University
+# Copyright:: 2018-2025, Oregon State University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,7 +32,8 @@ secrets = data_bag_item('osl_keepalived', 'mysql_vip2')
 
 keepalived_vrrp_instance 'mysql-ipv4' do
   master node['osl-keepalived']['primary'][node['fqdn']]
-  interface node['osl-keepalived']['haproxy']['interface']
+  interface node['osl-keepalived']['default_interface']
+  nopreempt !node['osl-keepalived']['primary'][node['fqdn']]
   virtual_router_id 5
   priority node['osl-keepalived']['priority'][node['fqdn']]
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
@@ -43,6 +44,7 @@ end
 keepalived_vrrp_instance 'mysql-backend-ipv4' do
   master node['osl-keepalived']['primary'][node['fqdn']]
   interface 'eno2'
+  nopreempt !node['osl-keepalived']['primary'][node['fqdn']]
   virtual_router_id 6
   priority node['osl-keepalived']['priority'][node['fqdn']]
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']

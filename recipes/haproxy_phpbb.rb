@@ -2,7 +2,7 @@
 # Cookbook:: osl-keepalived
 # Recipe:: haproxy_phpbb
 #
-# Copyright:: 2018-2024, Oregon State University
+# Copyright:: 2018-2025, Oregon State University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ secrets = data_bag_item('osl_keepalived', 'haproxy_phpbb')
 
 keepalived_vrrp_instance 'haproxy-phpbb-ipv4' do
   master node['osl-keepalived']['primary'][node['fqdn']]
-  interface node['osl-keepalived']['haproxy']['interface']
+  interface node['osl-keepalived']['default_interface']
   virtual_router_id 3
   priority node['osl-keepalived']['priority'][node['fqdn']]
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
@@ -42,7 +42,7 @@ end
 
 keepalived_vrrp_instance 'haproxy-phpbb-ipv6' do
   master node['osl-keepalived']['primary'][node['fqdn']]
-  interface node['osl-keepalived']['haproxy']['interface']
+  interface node['osl-keepalived']['default_interface']
   virtual_router_id 4
   priority node['osl-keepalived']['priority'][node['fqdn']]
   # Authentication isn't actually used with IPv6 (see https://tools.ietf.org/html/rfc5798#section-9)
