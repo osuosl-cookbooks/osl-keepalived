@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.7.0 (2025-05-05)
+------------------
+- Make mysql vip stay on whatever host it's currently on
+
 2.6.0 (2024-11-20)
 ------------------
 - Support for AlmaLinux 9
