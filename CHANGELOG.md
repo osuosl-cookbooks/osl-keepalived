@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.7.1 (2025-05-09)
+------------------
+- Make all mysql VIPs equal so they don't prefer one host or another
+
 2.7.0 (2025-05-05)
 ------------------
 - Make mysql vip stay on whatever host it's currently on
