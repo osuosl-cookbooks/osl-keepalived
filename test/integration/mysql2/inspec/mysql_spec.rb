@@ -6,7 +6,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.con
   virtual_router_id 5
   state MASTER
   interface eno1
-  priority 200
+  priority 100
   authentication {
     auth_type PASS
     auth_pass foobar
@@ -14,6 +14,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-ipv4__.con
   virtual_ipaddress {
     140.211.9.47/24
   }
+  nopreempt
 
 
 }))
@@ -29,7 +30,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
   virtual_router_id 6
   state MASTER
   interface eno2
-  priority 200
+  priority 100
   authentication {
     auth_type PASS
     auth_pass foobar
@@ -37,6 +38,7 @@ describe file '/etc/keepalived/conf.d/keepalived_vrrp_instance__mysql-backend-ip
   virtual_ipaddress {
     10.1.0.86/23
   }
+  nopreempt
 
 
 }))
