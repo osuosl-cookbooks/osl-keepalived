@@ -16,37 +16,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-node.default['osl-keepalived']['primary'] = {
-  'mysql3.osuosl.org' => true,
-  'mysql4.osuosl.org' => false,
-}
-
-node.default['osl-keepalived']['priority'] = {
-  'mysql3.osuosl.org' => 200,
-  'mysql4.osuosl.org' => 100,
-}
-
 include_recipe 'osl-keepalived::default'
 
 secrets = data_bag_item('osl_keepalived', 'mysql_vip2')
 
 keepalived_vrrp_instance 'mysql-ipv4' do
-  master node['osl-keepalived']['primary'][node['fqdn']]
+  master true
   interface node['osl-keepalived']['default_interface']
-  nopreempt !node['osl-keepalived']['primary'][node['fqdn']]
+  nopreempt true
   virtual_router_id 5
-  priority node['osl-keepalived']['priority'][node['fqdn']]
+  priority 100
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
   virtual_ipaddress %w(140.211.9.47/24)
   notifies :reload, 'service[keepalived]'
 end
 
 keepalived_vrrp_instance 'mysql-backend-ipv4' do
-  master node['osl-keepalived']['primary'][node['fqdn']]
+  master true
   interface 'eno2'
-  nopreempt !node['osl-keepalived']['primary'][node['fqdn']]
+  nopreempt true
   virtual_router_id 6
-  priority node['osl-keepalived']['priority'][node['fqdn']]
+  priority 100
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
   virtual_ipaddress %w(10.1.0.86/23)
   notifies :reload, 'service[keepalived]'

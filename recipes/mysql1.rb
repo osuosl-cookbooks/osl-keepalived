@@ -16,26 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-node.default['osl-keepalived']['primary'] = {
-  'mysql1.osuosl.org' => true,
-  'mysql2.osuosl.org' => false,
-}
-
-node.default['osl-keepalived']['priority'] = {
-  'mysql1.osuosl.org' => 200,
-  'mysql2.osuosl.org' => 100,
-}
-
 include_recipe 'osl-keepalived::default'
 
 secrets = data_bag_item('osl_keepalived', 'mysql_vip1')
 
 keepalived_vrrp_instance 'mysql-ipv4' do
-  master node['osl-keepalived']['primary'][node['fqdn']]
+  master true
   interface node['osl-keepalived']['default_interface']
-  nopreempt !node['osl-keepalived']['primary'][node['fqdn']]
+  nopreempt true
   virtual_router_id 7
-  priority node['osl-keepalived']['priority'][node['fqdn']]
+  priority 100
   authentication auth_type: 'PASS', auth_pass: secrets['auth_pass']
   virtual_ipaddress %w(140.211.15.221/24)
   notifies :reload, 'service[keepalived]'
