@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.7.3 (2026-07-13)
+------------------
+- cinc: updated kitchen and dokken files
+
 2.7.2 (2025-09-05)
 ------------------
 - AlmaLinux 10 Support
