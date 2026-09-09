@@ -43,12 +43,12 @@ end
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-osuosl-group__.conf' do
   its('content') do
     should match(
-%r(vrrp_sync_group haproxy-osuosl-group {
+%r{vrrp_sync_group haproxy-osuosl-group {
   group {
     haproxy-osuosl-ipv4
     haproxy-osuosl-ipv6
   }
-}))
+}})
   end
 end
 

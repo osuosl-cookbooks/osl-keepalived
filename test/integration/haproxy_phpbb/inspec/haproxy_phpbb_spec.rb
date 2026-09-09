@@ -43,12 +43,12 @@ end
 describe file '/etc/keepalived/conf.d/keepalived_vrrp_sync_group__haproxy-phpbb-group__.conf' do
   its('content') do
     should match(
-%r(vrrp_sync_group haproxy-phpbb-group {
+%r{vrrp_sync_group haproxy-phpbb-group {
   group {
     haproxy-phpbb-ipv4
     haproxy-phpbb-ipv6
   }
-}))
+}})
   end
 end
 
