@@ -3,6 +3,10 @@ osl-keepalived CHANGELOG
 This file is used to list changes made in each version of the
 osl-keepalived cookbook.
 
+2.8.0 (2026-09-09)
+------------------
+- Upgrade upstream keepalived cookbook to latest
+
 2.7.3 (2026-07-13)
 ------------------
 - cinc: updated kitchen and dokken files
