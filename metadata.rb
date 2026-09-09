@@ -10,8 +10,8 @@ version          '2.7.3'
 
 depends          'osl-selinux'
 depends          'osl-firewall'
-depends          'keepalived', '~> 6.0.0'
+depends          'keepalived', '~> 6.1.1'
 
-supports         'almalinux', '~> 8.0'
-supports         'almalinux', '~> 9.0'
-supports         'almalinux', '~> 10.0'
+supports 'almalinux', '~> 8.0'
+supports 'almalinux', '~> 9.0'
+supports 'almalinux', '~> 10.0'
