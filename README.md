@@ -6,7 +6,6 @@ This is OSL's wrapper cookbook for utilizing the [keepalived cookbook](https://s
 
 ### Platforms
 
-- CentOS 7
 - AlmaLinux 8
 
 ### Cookbooks
@@ -30,7 +29,6 @@ of these hosts.
 
 ### Prereqs
 
-- ChefDK 2.5.3 or later
 - Terraform
 - `kitchen-terraform`
 - OpenStack cluster
