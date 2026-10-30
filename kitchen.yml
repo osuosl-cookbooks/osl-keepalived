@@ -77,43 +77,12 @@ suites:
         eno2:
           ipv4: 140.211.9.50/24
 
-#  - name: multi-node-7
-#    driver:
-#      name: terraform
-#      command_timeout: 1800
-#    excludes:
-#      - almalinux-8
-#    provisioner: terraform
-#    verifier:
-#      name: terraform
-#      systems:
-#        - name: node1
-#          backend: ssh
-#          hosts_output: node1
-#          sudo: true
-#          user: centos
-#          controls:
-#            - all
-#            - node1
-#          hostnames: node1
-#        - name: node2
-#          backend: ssh
-#          hosts_output: node2
-#          sudo: true
-#          user: centos
-#          controls:
-#            - all
-#            - node2
-#          hostnames: node2
-#
 #  - name: multi-node-8
 #    driver:
 #      name: terraform
 #      command_timeout: 1800
 #      variables:
 #        centos_image: "CentOS Stream 8"
-#    excludes:
-#      - centos-7
 #    provisioner: terraform
 #    verifier:
 #      name: terraform
